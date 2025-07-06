@@ -9,10 +9,6 @@ module Crispr
     # - Replacing the rescued body with `nil` or a string.
     # - Removing individual rescue clauses from the rescue expression.
     class Rescue < Base
-      def match?(node)
-        node.type == :rescue
-      end
-
       def mutations_for(node)
         mutations = []
 
@@ -20,13 +16,13 @@ module Crispr
         mutations << node.children[0] if node.children[0]
 
         # Replace the rescued body with nil
-        mutations << s(:rescue, s(:nil), *node.children[1..])
+        mutations << s(:block, s(:rescue, node.children.first, s(:resbody, nil, nil, s(:nil)), nil), nil, nil)
 
         # Replace the rescued body with a different expression
         mutations << s(:rescue, s(:str, "error"), *node.children[1..])
 
         # Remove individual rescue clauses if present
-        if node.children[1..].any?
+        if node.children[1..] && !node.children[1..].empty?
           node.children[1..].each_with_index do |_rescue_clause, i|
             new_children = node.children.dup
             new_children.delete_at(i + 1) # +1 to skip the body
