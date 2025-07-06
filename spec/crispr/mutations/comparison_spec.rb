@@ -5,10 +5,6 @@ require "spec_helper"
 RSpec.describe Crispr::Mutations::Comparison do
   subject(:mutator) { described_class.new }
 
-  def parse(source)
-    Parser::CurrentRuby.parse(source)
-  end
-
   def extract_operator(node)
     node.children[1]
   end

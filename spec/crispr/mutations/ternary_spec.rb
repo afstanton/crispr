@@ -5,10 +5,6 @@ require "spec_helper"
 RSpec.describe Crispr::Mutations::Ternary do
   subject(:mutator) { described_class.new }
 
-  def parse(source)
-    Parser::CurrentRuby.parse(source)
-  end
-
   describe "#mutations_for" do
     it "returns if_branch, else_branch, condition, and swapped ternary" do
       node = parse("x ? 1 : 2")

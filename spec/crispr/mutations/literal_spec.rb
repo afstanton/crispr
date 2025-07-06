@@ -5,10 +5,6 @@ require "spec_helper"
 RSpec.describe Crispr::Mutations::Literal do
   subject(:mutator) { described_class.new }
 
-  def parse(source)
-    Parser::CurrentRuby.parse(source)
-  end
-
   def extract_mutation_values(nodes)
     nodes.map(&:children).flatten
   end

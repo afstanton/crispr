@@ -8,6 +8,7 @@ require_relative "mutations/comparison"
 require_relative "mutations/literal"
 require_relative "mutations/unary"
 require_relative "mutations/control_flow"
+require_relative "mutations/conditional"
 require_relative "mutations/logical"
 require_relative "mutations/ternary"
 require_relative "mutations/arithmetic"
@@ -24,6 +25,7 @@ module Crispr
       Crispr::Mutations::Literal.new,
       Crispr::Mutations::Unary.new,
       Crispr::Mutations::ControlFlow.new,
+      Crispr::Mutations::Conditional.new,
       Crispr::Mutations::Logical.new,
       Crispr::Mutations::Ternary.new,
       Crispr::Mutations::Arithmetic.new,

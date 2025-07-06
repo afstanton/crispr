@@ -7,7 +7,6 @@ module Crispr
   module Mutations
     # Mutates local variable assignments like `x = value`
     class Assignment < Base
-      include AST::Sexp
       # Returns mutated AST nodes for assignments
       #
       # @param node [Parser::AST::Node] the AST node to inspect

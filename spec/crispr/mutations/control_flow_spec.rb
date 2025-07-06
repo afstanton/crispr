@@ -5,10 +5,6 @@ require "spec_helper"
 RSpec.describe Crispr::Mutations::ControlFlow do
   subject(:mutator) { described_class.new }
 
-  def parse(source)
-    Parser::CurrentRuby.parse(source)
-  end
-
   describe "#mutations_for" do
     it "mutates next to break and nil" do
       node = parse("next 1")

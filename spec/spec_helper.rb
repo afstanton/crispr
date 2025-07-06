@@ -7,6 +7,7 @@ SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
 
 require "crispr"
+require_relative "support/parser_helpers"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -18,4 +19,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include ParserHelpers
 end

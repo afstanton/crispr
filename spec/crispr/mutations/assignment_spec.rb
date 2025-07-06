@@ -5,10 +5,6 @@ require "spec_helper"
 RSpec.describe Crispr::Mutations::Assignment do
   subject(:mutator) { described_class.new }
 
-  def parse(source)
-    Parser::CurrentRuby.parse(source)
-  end
-
   describe "#mutations_for" do
     it "mutates x = true to x = false" do
       node = parse("x = true")

@@ -5,10 +5,6 @@ require "spec_helper"
 RSpec.describe Crispr::Mutations::Logical do
   subject(:mutator) { described_class.new }
 
-  def parse(source)
-    Parser::CurrentRuby.parse(source)
-  end
-
   describe "#mutations_for" do
     it "mutates a && b to a || b, a, and b" do
       node = parse("a && b")

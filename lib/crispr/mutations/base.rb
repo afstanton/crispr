@@ -5,6 +5,8 @@ module Crispr
     # Abstract base class for all mutation strategies.
     # Subclasses must implement the `#mutations_for` method.
     class Base
+      include AST::Sexp
+
       # Returns an array of mutated AST nodes for a given node.
       #
       # @param node [Parser::AST::Node] the node to mutate
