@@ -2,7 +2,7 @@
 
 require "parser/current"
 require "unparser"
-require_relative "mutations/boolean_mutations"
+require_relative "mutations/boolean"
 
 module Crispr
   # Mutator performs simple AST mutations on Ruby source code.
@@ -24,7 +24,7 @@ module Crispr
     def find_mutations(node)
       return [] unless node.is_a?(Parser::AST::Node)
 
-      local_mutations = Crispr::Mutations::BooleanMutations.mutations_for(node)
+      local_mutations = Crispr::Mutations::Boolean.mutations_for(node)
       child_mutations = node.children.flat_map { |child| find_mutations(child) }
 
       local_mutations + child_mutations

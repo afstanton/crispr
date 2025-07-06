@@ -5,7 +5,7 @@ module Crispr
   module Mutations
     # Provides boolean-specific AST mutations.
     # Currently supports toggling `true` to `false` and `false` to `true`.
-    module BooleanMutations
+    module Boolean
       # Returns a list of stringified mutated forms for the given boolean AST node.
       #
       # @param node [Parser::AST::Node] the AST node to inspect

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "crispr/mutations/boolean_mutations"
+require "crispr/mutations/boolean"
 require "parser/current"
 
-RSpec.describe Crispr::Mutations::BooleanMutations do
+RSpec.describe Crispr::Mutations::Boolean do
   def parse_node(source)
     Parser::CurrentRuby.parse(source)
   end
