@@ -5,9 +5,10 @@ require "fileutils"
 require "tempfile"
 
 RSpec.describe Crispr::Runner do
-  let(:test_file_path) { File.join(Dir.pwd, "tmp_test.rb") }
+  let(:test_file_path) { File.join("spec", "tmp", "sample_code.rb") }
 
   before do
+    FileUtils.mkdir_p("spec/tmp")
     File.write(test_file_path, <<~RUBY)
       def working?
         true
@@ -16,12 +17,12 @@ RSpec.describe Crispr::Runner do
   end
 
   after do
-    FileUtils.rm_f(test_file_path)
+    FileUtils.rm_rf("spec/tmp")
   end
 
   it "detects that the mutation is killed by the test suite" do
-    File.write("spec/tmp_test_spec.rb", <<~RUBY)
-      require_relative "../../tmp_test"
+    File.write("spec/tmp/sample_spec.rb", <<~RUBY)
+      require_relative "sample_code"
 
       RSpec.describe "working?" do
         it "returns true" do
@@ -36,9 +37,13 @@ RSpec.describe Crispr::Runner do
       end
     RUBY
 
-    result = described_class.run_mutation(path: test_file_path, mutated_source: mutated)
+    result = described_class.run_mutation(
+      path: test_file_path,
+      mutated_source: mutated,
+      test_path: "spec/tmp/sample_spec.rb"
+    )
     expect(result).to be(true)
 
-    FileUtils.rm_f("spec/tmp_test_spec.rb")
+    FileUtils.rm_f("spec/tmp/sample_spec.rb")
   end
 end

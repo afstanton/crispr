@@ -30,14 +30,14 @@ RSpec.describe Crispr::CLI do
   it "exits with error if no file is given" do
     expect do
       described_class.run(["run"])
-    end.to output(/Error: Please specify a valid Ruby file to mutate/).to_stdout.and raise_error(SystemExit)
+    end.to output(/Error: Please specify a valid Ruby file or directory to mutate/).to_stdout.and raise_error(SystemExit)
   end
 
   it "exits with error if file does not exist" do
     allow(File).to receive(:exist?).and_return(false)
     expect do
       described_class.run(["run", "nonexistent.rb"])
-    end.to output(/Error: Please specify a valid Ruby file to mutate/).to_stdout.and raise_error(SystemExit)
+    end.to output(/Error: Please specify a valid Ruby file or directory to mutate/).to_stdout.and raise_error(SystemExit)
   end
 
   it "exits with usage message if no command is provided" do
@@ -51,6 +51,6 @@ RSpec.describe Crispr::CLI do
 
     expect do
       described_class.run(["run", "some_file.rb"])
-    end.to output(/No mutations found/).to_stdout.and raise_error(SystemExit)
+    end.to output(/No mutations found in/).to_stdout
   end
 end
