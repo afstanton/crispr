@@ -27,5 +27,7 @@ RSpec.describe Crispr::Mutations::Conditional do
 
     expect(mutations).to include(s(:if, s(:false), s(:send, nil, :y), nil))
   end
+
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 1"
 end
 # rubocop:enable Lint/BooleanSymbol

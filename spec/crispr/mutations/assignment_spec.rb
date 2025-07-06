@@ -34,9 +34,6 @@ RSpec.describe Crispr::Mutations::Assignment do
       expect(mutations).to include(parse("x = false"))
     end
 
-    it "returns empty array for unrelated nodes" do
-      node = parse("x + y")
-      expect(mutator.mutations_for(node)).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "x + y"
   end
 end

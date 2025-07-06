@@ -26,9 +26,6 @@ RSpec.describe Crispr::Mutations::Comparison do
       end
     end
 
-    it "returns empty array for non-comparison nodes" do
-      node = parse("foo")
-      expect(mutator.mutations_for(node)).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "foo"
   end
 end

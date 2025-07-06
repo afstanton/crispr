@@ -16,4 +16,6 @@ RSpec.describe Crispr::Mutations::Range do
     mutations = mutator.mutations_for(node)
     expect(mutations).to include(parse("1..5"))
   end
+
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 1"
 end

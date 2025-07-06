@@ -6,10 +6,7 @@ RSpec.describe Crispr::Mutations::Symbol do
   let(:mutator) { described_class.new }
 
   describe "#mutations_for" do
-    it "returns an empty array for non-symbol nodes" do
-      node = parse("42")
-      expect(mutator.mutations_for(node)).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "42"
 
     it "mutates :foo to other common symbols" do
       node = parse(":foo")

@@ -25,4 +25,6 @@ RSpec.describe Crispr::Mutations::Array do
     expect(mutations).to include(s(:array, s(:nil), s(:int, 2)))
     expect(mutations).to include(s(:array, s(:int, 1), s(:nil)))
   end
+
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 2"
 end

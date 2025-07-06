@@ -30,4 +30,6 @@ RSpec.describe Crispr::Mutations::Rescue do
         nil)
     )
   end
+
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 1"
 end

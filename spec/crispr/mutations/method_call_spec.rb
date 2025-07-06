@@ -22,12 +22,6 @@ RSpec.describe Crispr::Mutations::MethodCall do
       expect(mutations.any? { |m| m.type == :send && m.children[0..1] == [nil, :foo] && m.children.length == 2 }).to be true
     end
 
-    it "returns an empty array for non-send nodes" do
-      node = parse("x = 5")
-
-      mutations = mutator.mutations_for(node)
-
-      expect(mutations).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "x = 5"
   end
 end

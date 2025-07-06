@@ -58,5 +58,7 @@ RSpec.describe Crispr::Mutations::Literal do
       expect(mutations.first.type).to eq(:str)
       expect(mutations.first.children.first).to eq("null")
     end
+
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 1"
   end
 end

@@ -37,5 +37,6 @@ RSpec.describe Crispr::Mutations::Hash do
           s(:pair, s(:sym, :b), s(:int, 2)))
       )
     end
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 2"
   end
 end

@@ -21,9 +21,6 @@ RSpec.describe Crispr::Mutations::Ternary do
       expect(mutations).to be_empty
     end
 
-    it "returns empty array for unrelated nodes" do
-      node = parse("a + b")
-      expect(mutator.mutations_for(node)).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "a + b"
   end
 end

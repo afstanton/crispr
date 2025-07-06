@@ -8,6 +8,8 @@ module Crispr
     # - Replaces the entire block with the method call only.
     class Block < Base
       def mutations_for(node)
+        return [] unless node.type == :block
+
         mutations = []
 
         method_call, args, body = *node

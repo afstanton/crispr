@@ -12,6 +12,7 @@ SimpleCov.start
 
 require "crispr"
 require_relative "support/parser_helpers"
+require_relative "support/shared_examples/mutation_shared_examples"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

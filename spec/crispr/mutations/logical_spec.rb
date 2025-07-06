@@ -18,10 +18,6 @@ RSpec.describe Crispr::Mutations::Logical do
       expect(mutations).to include(parse("a && b"), parse("a"), parse("b"))
     end
 
-    it "returns empty array for non-logical nodes" do
-      node = parse("a + b")
-      mutations = mutator.mutations_for(node)
-      expect(mutations).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "a + b"
   end
 end

@@ -22,10 +22,6 @@ RSpec.describe Crispr::Mutations::Regexp do
       expect(mutations).to include(s(:regexp, s(:str, ""), s(:regopt)))
     end
 
-    it "returns empty array for non-regexp nodes" do
-      node = parse("42")
-      mutations = described_class.new.mutations_for(node)
-      expect(mutations).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "42"
   end
 end

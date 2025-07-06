@@ -32,9 +32,6 @@ RSpec.describe Crispr::Mutations::Arithmetic do
       expect(mutations).to include(parse("b"))
     end
 
-    it "returns empty array for non-arithmetic expressions" do
-      node = parse("a == b")
-      expect(mutator.mutations_for(node)).to eq([])
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "x = 1"
   end
 end

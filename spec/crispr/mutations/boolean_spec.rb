@@ -15,9 +15,5 @@ RSpec.describe Crispr::Mutations::Boolean do
     expect(mutations).to include("true")
   end
 
-  it "returns empty array for unrelated nodes" do
-    node = parse("42")
-    mutations = described_class.new.mutations_for(node)
-    expect(mutations).to be_empty
-  end
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "42"
 end

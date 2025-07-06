@@ -34,10 +34,7 @@ RSpec.describe Crispr::Mutations::Numeric do
     end
 
     context "when node is not an integer" do
-      it "returns an empty array" do
-        node = parse("true")
-        expect(mutator.mutations_for(node)).to eq([])
-      end
+      it_behaves_like "returns empty array for unrelated nodes", described_class, "true"
     end
   end
 end

@@ -10,6 +10,8 @@ module Crispr
     # - Removing individual rescue clauses from the rescue expression.
     class Rescue < Base
       def mutations_for(node)
+        return [] unless node.type == :rescue
+
         mutations = []
 
         # Remove the rescue entirely (just return the body before rescue)

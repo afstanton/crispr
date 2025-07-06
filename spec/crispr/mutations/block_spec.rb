@@ -23,4 +23,6 @@ RSpec.describe Crispr::Mutations::Block do
       expect(mutations).to include(parse("foo"))
     end
   end
+
+  it_behaves_like "returns empty array for unrelated nodes", described_class, "1 + 1"
 end

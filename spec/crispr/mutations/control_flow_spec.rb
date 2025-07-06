@@ -24,10 +24,6 @@ RSpec.describe Crispr::Mutations::ControlFlow do
       expect(mutations).to include(parse("return"), parse("nil"))
     end
 
-    it "returns empty array for unrelated nodes" do
-      node = parse("puts 'hi'")
-      mutations = mutator.mutations_for(node)
-      expect(mutations).to be_empty
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "puts 'hi'"
   end
 end

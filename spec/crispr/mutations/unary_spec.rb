@@ -24,10 +24,6 @@ RSpec.describe Crispr::Mutations::Unary do
       expect(mutations.first).to eq(parse("-foo"))
     end
 
-    it "returns empty array for non-unary expressions" do
-      node = parse("foo + bar")
-      mutations = mutator.mutations_for(node)
-      expect(mutations).to be_empty
-    end
+    it_behaves_like "returns empty array for unrelated nodes", described_class, "foo + bar"
   end
 end
