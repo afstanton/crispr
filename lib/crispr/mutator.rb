@@ -3,11 +3,17 @@
 require "parser/current"
 require "unparser"
 require_relative "mutations/boolean"
+require_relative "mutations/numeric"
 
 module Crispr
   # Mutator performs simple AST mutations on Ruby source code.
-  # Currently, it supports changing `true` literals to `false` and vice versa.
+  # It delegates to multiple mutation strategies (Boolean, Numeric, etc.)
   class Mutator
+    MUTATORS = [
+      Crispr::Mutations::Boolean.new,
+      Crispr::Mutations::Numeric.new
+    ].freeze
+
     def initialize(source_code)
       @source_code = source_code
     end
@@ -24,8 +30,11 @@ module Crispr
     def find_mutations(node)
       return [] unless node.is_a?(Parser::AST::Node)
 
-      local_mutations = Crispr::Mutations::Boolean.mutations_for(node)
-      child_mutations = node.children.flat_map { |child| find_mutations(child) }
+      local_mutations =
+        MUTATORS.flat_map { |mutator| mutator.mutations_for(node) }
+
+      child_mutations =
+        node.children.flat_map { |child| find_mutations(child) }
 
       local_mutations + child_mutations
     end
