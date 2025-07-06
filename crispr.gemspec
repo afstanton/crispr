@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = ["afstanton@gmail.com"]
 
   spec.summary = "A mutation testing framework for Ruby."
-  spec.description = "Crispr is a mutation testing tool for Ruby that introduces small code mutations to verify the effectiveness of your test suite."
+  spec.description = "Crispr is a mutation testing tool for Ruby that introduces " \
+                     "small code mutations to verify the effectiveness of your test suite."
   spec.homepage = "https://github.com/afstanton/crispr"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
@@ -19,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/afstanton/crispr"
   spec.metadata["changelog_uri"] = "https://github.com/afstanton/crispr/blob/main/CHANGELOG.md"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -29,8 +31,8 @@ Gem::Specification.new do |spec|
         f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile])
     end
   end
-  spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.bindir = "bin"
+  spec.executables = ["crispr"]
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
@@ -38,4 +40,7 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
+
+  spec.add_dependency "parser"
+  spec.add_dependency "unparser"
 end

@@ -1,5 +1,13 @@
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.1
+
+Metrics/MethodLength:
+  Max: 100
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

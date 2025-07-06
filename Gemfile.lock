@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     crispr (0.1.0)
+      parser
+      unparser
 
 GEM
   remote: https://rubygems.org/
@@ -65,11 +67,21 @@ GEM
     rubocop-ast (1.45.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
+    rubocop-rake (0.7.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
+    rubocop-rspec (3.6.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
     stringio (3.1.7)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
+    unparser (0.8.0)
+      diff-lcs (~> 1.6)
+      parser (>= 3.3.0)
+      prism (>= 1.4)
 
 PLATFORMS
   arm64-darwin-24
@@ -78,9 +90,11 @@ PLATFORMS
 DEPENDENCIES
   crispr!
   irb
-  rake (~> 13.0)
-  rspec (~> 3.0)
-  rubocop (~> 1.21)
+  rake
+  rspec
+  rubocop
+  rubocop-rake
+  rubocop-rspec
 
 BUNDLED WITH
    2.6.9
