@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+require "crispr/mutations/boolean_mutations"
+require "parser/current"
+
+RSpec.describe Crispr::Mutations::BooleanMutations do
+  def parse_node(source)
+    Parser::CurrentRuby.parse(source)
+  end
+
+  it "mutates true to false" do
+    node = parse_node("true")
+    mutations = described_class.mutations_for(node)
+    expect(mutations).to include("false")
+  end
+
+  it "mutates false to true" do
+    node = parse_node("false")
+    mutations = described_class.mutations_for(node)
+    expect(mutations).to include("true")
+  end
+
+  it "returns empty array for unrelated nodes" do
+    node = parse_node("42")
+    mutations = described_class.mutations_for(node)
+    expect(mutations).to be_empty
+  end
+end

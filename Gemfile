@@ -9,6 +9,8 @@ gem "irb"
 gem "rake"
 
 gem "rspec"
+gem "simplecov"
+gem "simplecov-console"
 
 gem "rubocop"
 gem "rubocop-rake"

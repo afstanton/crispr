@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require "crispr/mutator"
 require "crispr/runner"
 
 module Crispr
+  # Provides the command-line interface for the Crispr gem.
+  # Handles argument parsing and invokes the mutation and runner logic.
   class CLI
     def self.run(argv = ARGV)
       command = argv.shift
