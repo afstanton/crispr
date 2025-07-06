@@ -41,6 +41,6 @@ Gem::Specification.new do |spec|
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 
-  spec.add_dependency "parser"
-  spec.add_dependency "unparser"
+  spec.add_dependency "parser", "~> 3.3.8"
+  spec.add_dependency "unparser", "~> 0.8.0"
 end

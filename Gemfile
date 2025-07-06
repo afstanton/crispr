@@ -11,6 +11,7 @@ gem "rake"
 gem "rspec"
 gem "simplecov"
 gem "simplecov-console"
+gem "simplecov-html"
 
 gem "rubocop"
 gem "rubocop-rake"

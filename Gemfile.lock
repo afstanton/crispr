@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     crispr (0.2.0)
-      parser
-      unparser
+      parser (~> 3.3.8)
+      unparser (~> 0.8.0)
 
 GEM
   remote: https://rubygems.org/
@@ -111,6 +111,7 @@ DEPENDENCIES
   rubocop-rspec
   simplecov
   simplecov-console
+  simplecov-html
 
 BUNDLED WITH
    2.6.9
