@@ -5,6 +5,7 @@ require "unparser"
 require_relative "mutations/boolean"
 require_relative "mutations/numeric"
 require_relative "mutations/comparison"
+require_relative "mutations/literal"
 
 module Crispr
   # Mutator performs simple AST mutations on Ruby source code.
@@ -13,7 +14,8 @@ module Crispr
     MUTATORS = [
       Crispr::Mutations::Boolean.new,
       Crispr::Mutations::Numeric.new,
-      Crispr::Mutations::Comparison.new
+      Crispr::Mutations::Comparison.new,
+      Crispr::Mutations::Literal.new
     ].freeze
 
     def initialize(source_code)
