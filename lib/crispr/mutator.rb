@@ -16,6 +16,12 @@ require_relative "mutations/assignment"
 require_relative "mutations/method_call"
 require_relative "mutations/array"
 require_relative "mutations/hash"
+require_relative "mutations/range"
+require_relative "mutations/regexp"
+require_relative "mutations/symbol"
+require_relative "mutations/string"
+require_relative "mutations/block"
+require_relative "mutations/rescue"
 
 module Crispr
   # Mutator performs simple AST mutations on Ruby source code.
@@ -35,7 +41,13 @@ module Crispr
       Crispr::Mutations::Assignment.new,
       Crispr::Mutations::MethodCall.new,
       Crispr::Mutations::Array.new,
-      Crispr::Mutations::Hash.new
+      Crispr::Mutations::Hash.new,
+      Crispr::Mutations::Range.new,
+      Crispr::Mutations::Regexp.new,
+      Crispr::Mutations::Symbol.new,
+      Crispr::Mutations::String.new,
+      Crispr::Mutations::Block.new,
+      Crispr::Mutations::Rescue.new
     ].freeze
 
     def initialize(source_code)

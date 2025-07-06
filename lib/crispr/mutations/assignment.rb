@@ -24,7 +24,7 @@ module Crispr
         mutations << nil
 
         # Common alternative values
-        [:nil, s(:int, 0), s(:str, ""), s(:true), s(:false)].each do |replacement|
+        [s(:nil), s(:int, 0), s(:str, ""), s(:true), s(:false)].each do |replacement|
           rep_node = replacement.is_a?(Symbol) ? s(replacement) : replacement
           mutations << s(:lvasgn, var_name, rep_node)
         end
