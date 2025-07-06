@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "crispr/reporter"
+require "spec_helper"
 
 RSpec.describe Crispr::Reporter do
   let(:reporter) { described_class.new }

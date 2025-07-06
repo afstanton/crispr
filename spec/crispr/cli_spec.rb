@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "crispr/cli"
+require "spec_helper"
 
 RSpec.describe Crispr::CLI do
   let(:mutator) { instance_double(Crispr::Mutator) }

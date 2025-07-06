@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "crispr/mutator"
+require "spec_helper"
 
 RSpec.describe Crispr::Mutator do
   it "mutates `true` to `false`" do

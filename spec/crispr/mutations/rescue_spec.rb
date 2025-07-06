@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "crispr/mutator"
+require "spec_helper"
 
 RSpec.describe Crispr::Mutations::Rescue do
   let(:source) { <<~RUBY }

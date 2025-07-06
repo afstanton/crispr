@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "crispr/mutations/boolean"
-require "parser/current"
+require "spec_helper"
 
 RSpec.describe Crispr::Mutations::Boolean do
   it "mutates true to false" do

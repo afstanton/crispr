@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require "crispr/runner"
-require "fileutils"
-require "tempfile"
+require "spec_helper"
 
 RSpec.describe Crispr::Runner do
   let(:test_file_path) { File.join("spec", "tmp", "sample_code.rb") }
