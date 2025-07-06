@@ -13,18 +13,17 @@ module Crispr
     # @param mutated_source [String] the mutated version of the file's source code
     # @param test_path [String, nil] optional path to a specific test file to run
     # @return [Boolean] true if the mutation was killed (test suite failed), false otherwise
-    def self.run_mutation(path:, mutated_source:, test_path: nil)
+    def self.run_mutation(path:, mutated_source:, test_path: nil, verbose: false)
       original_source = File.read(path)
 
       begin
         File.write(path, mutated_source)
 
         test_cmd = test_path ? "bundle exec rspec #{test_path}" : "bundle exec rspec"
-        stdout, stderr, status = Open3.capture3(test_cmd)
-        killed = !status.success?
+        test_cmd += " > /dev/null 2>&1" unless verbose
 
-        puts stdout unless status.success?
-        puts stderr unless status.success?
+        system(test_cmd)
+        killed = !$CHILD_STATUS.success?
 
         killed
       ensure
