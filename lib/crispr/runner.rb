@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "English"
 require "open3"
 
 module Crispr
@@ -24,7 +25,7 @@ module Crispr
 
         system(test_cmd)
         # Use $? to check the exit status of the last system call
-        killed = !$?.success?
+        killed = !$CHILD_STATUS.success?
 
         killed
       ensure

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    crispr (0.2.1)
+    crispr (0.2.2)
       parser (~> 3.3.8)
       unparser (~> 0.8.0)
 
