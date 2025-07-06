@@ -23,7 +23,8 @@ module Crispr
         test_cmd += " > /dev/null 2>&1" unless verbose
 
         system(test_cmd)
-        killed = !$CHILD_STATUS.success?
+        # Use $? to check the exit status of the last system call
+        killed = !$?.success?
 
         killed
       ensure
