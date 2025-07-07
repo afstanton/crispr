@@ -17,9 +17,9 @@ module Crispr
 
         case node.type
         when :true
-          [Unparser.unparse(Parser::AST::Node.new(:false))]
+          [Parser::AST::Node.new(:false)]
         when :false
-          [Unparser.unparse(Parser::AST::Node.new(:true))]
+          [Parser::AST::Node.new(:true)]
         else
           []
         end

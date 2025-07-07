@@ -8,6 +8,8 @@ RSpec.describe Crispr::Mutator do
     mutator = described_class.new(source)
     mutations = mutator.mutations
 
-    expect(mutations).to include("false")
+    expect(mutations).to include("def valid?
+  false
+end")
   end
 end
