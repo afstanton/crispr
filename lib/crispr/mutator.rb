@@ -58,21 +58,63 @@ module Crispr
       ast = Parser::CurrentRuby.parse(@source_code)
       return [] unless ast
 
-      find_mutations(ast)
+      mutations = find_mutations(ast)
+      mutations.map { |path, mutated_node| apply_mutation_and_unparse(ast, path, mutated_node) }
     end
 
     private
 
-    def find_mutations(node)
+    def apply_mutation_and_unparse(original_ast, node_path, mutated_node)
+      # Create a deep copy of the AST to avoid modifying the original
+      copied_ast = Marshal.load(Marshal.dump(original_ast))
+
+      # Replace the node at the specified path with the mutated_node
+      modified_ast = replace_node_at_path(copied_ast, node_path, mutated_node)
+
+      Unparser.unparse(modified_ast)
+    end
+
+    def replace_node_at_path(current_node, path, replacement_node)
+      # If path is empty, we've reached the target node
+      return replacement_node if path.empty?
+
+      # If current node is not an AST node, we can't traverse further
+      return current_node unless current_node.is_a?(Parser::AST::Node)
+
+      # Get the next step in the path and the remaining path
+      next_index, *remaining_path = path
+
+      # If the index is out of bounds, return the current node unchanged
+      return current_node if next_index >= current_node.children.size
+
+      # Recursively replace in the child at next_index
+      new_children = current_node.children.dup
+      new_children[next_index] = replace_node_at_path(
+        current_node.children[next_index],
+        remaining_path,
+        replacement_node
+      )
+
+      # Return updated node with new children
+      current_node.updated(nil, new_children)
+    end
+
+    def find_mutations(node, path = [])
       return [] unless node.is_a?(Parser::AST::Node)
 
-      local_mutations =
-        MUTATORS.flat_map { |mutator| mutator.mutations_for(node) }
+      # Find mutations for the current node
+      local_mutations = MUTATORS.flat_map do |mutator|
+        mutator.mutations_for(node).map { |mutated_form| [path.dup, mutated_form] }
+      end
 
-      child_mutations =
-        node.children.flat_map { |child| find_mutations(child) }
+      # Find mutations in child nodes
+      child_mutations = node.children.each_with_index.flat_map do |child, index|
+        find_mutations(child, path + [index])
+      end
 
-      local_mutations + child_mutations
+      # Filter out nil mutations (from assignment.rb and potentially others)
+      all_mutations = local_mutations + child_mutations
+      all_mutations.reject { |_path, mutation| mutation.nil? }
     end
   end
 end
